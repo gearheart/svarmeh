@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="wrapper-content content-top ">
+    <div class="cont_pad">
+        <!--content-->
+        <div class="clear">
+            <div id="content">
+                <div class="container">
+                    <h1 class="componentheading">{{ page }}</h1>
+                    {{ page.body|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

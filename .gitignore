@@ -1,0 +1,4 @@
+*.pyc
+svarmeh/media
+.DS_Store
+dev.db

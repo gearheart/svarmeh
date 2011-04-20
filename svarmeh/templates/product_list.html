@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load thumbnail svarmeh_tags %}
+
+{% block content %}
+<div class="wrapper-content content-top ">
+    <div class="cont_pad">
+        <!--content-->
+        <div class="clear">
+            <div id="content">
+                <div class="container row-1">
+                    <h1 class="componentheading">Продукция</h1>
+                    <div class="wrapper">
+                        <div class="col-1">
+                            {% with total=product_list|length %}
+                                {% with half=total|half %}
+                                    {% for product in product_list %}
+                                        <div class="wrapper indent-bot2ie">
+                                            {% if product.image %}
+                                                {% thumbnail product.image "115x115" crop="center" as im %}
+                                                    <div class="img-indent">
+                                                        <img class="border" src="{{ MEDIA_URL }}{{ im }}" alt="{{ product }}" />
+                                                    </div>
+                                                {% endthumbnail %}
+                                            {% endif %}
+                                            <div class="extra-box">
+                                                <h2><a href="{{ product.get_absolute_url }}">{{ product }}</a></h2>
+                                                {{ product.intro|safe }}
+                                            </div>
+                                        </div>
+                                        {% if forloop.counter == half %}
+                                            </div><div class="col-2">
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endwith %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

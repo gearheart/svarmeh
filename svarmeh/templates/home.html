@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block extra_script %}
+        <script type="text/javascript" src="{{ STATIC_URL }}slider.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="slider-block">
+        {% for project in projects %}
+            {% thumbnail project.image "426x340" crop="center" as im %}
+            <div class="slide">
+                <a href="{{ project.get_absolute_url }}" class="image-link"><img src="{{ MEDIA_URL }}{{ im }}" alt="{{ project }}" /></a>
+                <span class=nivo-title>
+                    <span class=t1>{{ project }}</span><br>
+                    <span class=t2></span><br>
+                    {{ project.intro|safe }}
+                </span><br>
+                <a href="{{ project.get_absolute_url }}" class=link_1>Подробнее</a>
+                <div class="clear"></div>
+            </div>
+            {% endthumbnail %}
+        {% endfor %}
+    </div>
+
+    <div class="wrapper-content content-top ">
+        <div class="cont_pad">
+            <div id="right">
+                <h3>Новости</h3>
+                <div class="globalnews" style="margin:0">
+                    <div>
+                        <div class="indent">
+                            <span class="date">Tue, August 12</span>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque...</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="indent">
+                            <span class="date">Tue, August 12</span>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque...</p>
+                        </div>
+                    </div>
+
+                    <a href="#" class="readon_2">Все новости</a>  </div>
+            </div>
+            <div id="left">
+                <div class="module-whatdoing">
+                    <h3>Продукция</h3>
+                    <ul class="menu-whatdoing">
+                        {% for project in projects %}
+                            <li><a href="{{ project.get_absolute_url }}"><span>{{ project }}</span></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div id="content">
+                <h3>Who we are</h3>
+                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui</p>
+                <p>At nequ eget nisus leo vel nean necoulum antepsum prin faucibus oposuere cubind isse sollicitu dinvelit sed l pharetr.unt arra selorta diam eim velit. Fusc ismod conse quat aris accunte.</p>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+{% endblock %}
