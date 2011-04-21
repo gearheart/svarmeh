@@ -1170,7 +1170,10 @@ body, html {
 }
 /*wrapper-box*/
 
-h3, #left h3, #right h3, .componentheading, .componentheading a {
+.componentheading a {
+	color:#333333;
+}
+h3, #left h3, #right h3, .componentheading {
 	color:#333333;
 	font-size:38px;
 	line-height:40px;
