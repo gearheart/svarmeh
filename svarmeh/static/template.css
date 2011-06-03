@@ -2417,8 +2417,8 @@ h2 a:hover, .row-1 h2 a:hover {
 }
 
 .link_1 {
-	display:inline-block;
-	margin-top:30px;
+	/*display:inline-block;*/
+	/*margin-top:30px;*/
 	text-decoration:none;
 	color:#a7a7a7;
 	font-size:20px;
@@ -2433,7 +2433,7 @@ h2 a:hover, .row-1 h2 a:hover {
 }
 
 .slider-block {
-    height: 345px;
+    /*height: 345px;*/
     width: 940px;
     overflow: hidden;
 }

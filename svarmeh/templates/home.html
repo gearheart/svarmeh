@@ -1,26 +1,22 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 
-{% block extra_script %}
-        <script type="text/javascript" src="{{ STATIC_URL }}slider.js"></script>
-{% endblock %}
-
 {% block content %}
     <div class="slider-block">
-        {% for project in projects %}
-            {% thumbnail project.image "426x340" crop="center" as im %}
+        {% if mblock %}
+            {% thumbnail mblock.image "426x340" crop="center" as im %}
             <div class="slide">
-                <a href="{{ project.get_absolute_url }}" class="image-link"><img src="{{ MEDIA_URL }}{{ im }}" alt="{{ project }}" /></a>
+                <a href="{{ mblock.link }}" class="image-link"><img src="{{ MEDIA_URL }}{{ im }}" alt="{{ mblock.title }}" /></a>
                 <span class=nivo-title>
-                    <span class=t1>{{ project }}</span><br>
+                    <span class=t1>{{ mblock.title }}</span><br>
                     <span class=t2></span><br>
-                    {{ project.intro|safe }}
+                    {{ mblock.text|safe }}
                 </span><br>
-                <a href="{{ project.get_absolute_url }}" class=link_1>Подробнее</a>
+                <a href="{{ mblock.link }}" class=link_1 target="_blank">Подробнее</a>
                 <div class="clear"></div>
             </div>
             {% endthumbnail %}
-        {% endfor %}
+        {% endif %}
     </div>
 
     <div class="wrapper-content content-top ">

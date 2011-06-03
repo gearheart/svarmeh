@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib import admin
-from svarmeh.models import Product, Page, Chunk
+from svarmeh.models import Product, Page, Chunk, MainPageBlock
 from redactor.admin import RedactorModelAdmin
 
 class ProductAdmin(RedactorModelAdmin):

@@ -36,6 +36,20 @@ class Page(models.Model):
         self.slug = self.slug or get_slug(Page, self.title)
         super(Page, self).save(*args, **kwargs)
 
+class MainPageBlock(models.Model):
+    STATUSES = (
+        ('draft', u'Черновик'),
+        ('published', u'Опубликовано'),
+    )
+    image = ImageField(u'Картинка', upload_to='products/')
+    title = models.CharField(u'Заголовок', max_length=100)
+    text = models.TextField(u'Текст', help_text=u'Показано на странице продукта')
+    status = models.CharField(u'Статус', choices=STATUSES, max_length=20, default='draft')
+    link = models.CharField(u'Ссылка', max_length=150)
+
+    class Meta:
+        verbose_name = u'Блок на главной'
+        verbose_name_plural = u'Блоки на главной'
 
 class Product(models.Model):
     STATUSES = (
