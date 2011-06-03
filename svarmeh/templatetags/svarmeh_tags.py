@@ -35,5 +35,5 @@ def chunk(key):
 
 @register.filter
 def half(number):
-    return number / 2
+    return int(round(number / 2.0))
 
