@@ -26,10 +26,36 @@ class PageAdmin(RedactorModelAdmin):
         }),
     )
 
+    hidden = ('status', 'in_menu', 'slug', 'weight')
+    readonly = ('title', )
+
+    def has_delete_permission(self, request, obj=None):
+        return bool(obj) and obj.slug != '/'
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj and obj.slug == '/':
+            return self.readonly_fields + ('title',)
+        return self.readonly_fields
+
+    def get_fieldsets(self, request, obj=None):
+        if obj and obj.slug == '/':
+            return [(None, { 'fields': ('title', 'body') })]
+
+        return self.declared_fieldsets
+
+    def get_form(self, request, obj=None, **kwargs):
+        if obj and obj.slug == '/':
+            kwargs['exclude'] = self.readonly + self.hidden
+        return super(PageAdmin, self).get_form(request, obj, **kwargs)
+
 class ChunkAdmin(admin.ModelAdmin):
   list_display = ('key', 'content')
+
+class MainPageBlockAdmin(RedactorModelAdmin):
+    pass
 
 admin.site.register(Chunk, ChunkAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(MainPageBlock, MainPageBlockAdmin)
 
